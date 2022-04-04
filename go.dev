@@ -1,0 +1,32 @@
+apiVersion: 1.0.0
+metadata:
+  generateName: golang-
+projects:
+  - name: gotemp
+    source:
+      type: git
+      location: 'https://github.com/demetera/gotemp'
+    clonePath: src/github.com/demetera/gotemp
+components:
+  - type: chePlugin
+    id: golang/go/latest
+    alias: go-plugin
+    preferences:
+      go.lintTool: golangci-lint
+      go.lintFlags: '--fast'
+      go.useLanguageServer: true
+    registryUrl: 'https://eclipse-che.github.io/che-plugin-registry/7.42.0/v3/'
+  - type: dockerimage
+    image: 'quay.io/eclipse/che-golang-1.17:ae494ed'
+    alias: go-cli
+    env:
+      - name: GOPATH
+        value: $(CHE_PROJECTS_ROOT)
+      - name: GOCACHE
+        value: /tmp/.cache
+    endpoints:
+      - name: 8080-tcp
+        port: 8080
+    memoryLimit: 2Gi
+    mountSources: true
+    
