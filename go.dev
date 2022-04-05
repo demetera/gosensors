@@ -2,11 +2,11 @@ apiVersion: 1.0.0
 metadata:
   generateName: golang-
 projects:
-  - name: gotemp
+  - name: gosensors
     source:
       type: git
-      location: 'https://github.com/demetera/gotemp'
-    clonePath: src/github.com/demetera/gotemp
+      location: 'https://github.com/demetera/gosensors'
+    clonePath: src/github.com/demetera/gosensors
 components:
   - type: chePlugin
     id: golang/go/latest
