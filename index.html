@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta http-equiv="refresh" content="5">-->
     <title>Document</title>
 </head>
-<body>
-    <p>{{.}}</p>
-    <button>Click Me</button>
+<body onload="but();">
+    <p id="ptemp"></p>
+    <p id="pfan"></p>
+    <button onclick="but();">Refresh</button>
 </body>
+<script>
+    function but() {
+        fetch("/update")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("ptemp").innerHTML = data.temp
+            document.getElementById("pfan").innerHTML = data.fan
+            console.log("Changed")
+        })
+        
+    }
+</script>
 </html>
